@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const domainContentRoutes = require("./routes/domain.route.js");
 
 // Load env
 dotenv.config();
@@ -9,7 +10,7 @@ const connectDB = require("./config/db");
 
 // Routes
 const authRoutes = require("./routes/auth.route.js");
-const adminRoutes = require("./routes/admin.route.js"); // 👈 ADD THIS
+const adminRoutes = require("./routes/admin.route.js"); 
 
 // Connect to MongoDB
 connectDB();
@@ -18,11 +19,18 @@ const app = express();
 
 // Global Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json());       
+app.use(express.urlencoded({ extended: true })); 
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes); // 👈 ADD THIS
+app.use("/api/admin", adminRoutes); 
+app.use("/api/domain", domainContentRoutes);
+
+app.get("/test", (req, res) => {
+  res.send("Backend reachable!");
+});
+
 
 // Health Check
 app.get("/", (req, res) => {
