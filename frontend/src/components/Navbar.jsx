@@ -23,7 +23,6 @@ function Navbar() {
 
   const isAdmin = userRole === "admin";
 
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
@@ -36,7 +35,6 @@ function Navbar() {
         <Link to="/" className="text-2xl font-bold text-indigo-600">
           AI Learning Guide
         </Link>
-
         {/* NAV LINKS */}
         <div className="hidden md:flex items-center space-x-8 text-gray-700 font-medium">
           <Link to="/" className="hover:text-indigo-600 transition">
@@ -152,7 +150,7 @@ function Navbar() {
             Roadmap
           </Link>
         </div>
-
+        {/* CTA BUTTONS */}
         {/* CTA BUTTONS */}
         <div className="hidden md:flex items-center space-x-4">
           {isAdmin && (
@@ -163,13 +161,23 @@ function Navbar() {
               Dashboard
             </Link>
           )}
+
           {!isLoggedIn ? (
-            <Link
-              to="/register"
-              className="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition"
-            >
-              Sign Up
-            </Link>
+            <>
+              <Link
+                to="/login"
+                className="bg-white text-indigo-600 border border-indigo-600 px-5 py-2 rounded-full hover:bg-indigo-50 transition"
+              >
+                Sign In
+              </Link>
+
+              <Link
+                to="/register"
+                className="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition"
+              >
+                Sign Up
+              </Link>
+            </>
           ) : (
             <button
               onClick={handleLogout}
@@ -179,6 +187,7 @@ function Navbar() {
             </button>
           )}
         </div>
+        
       </div>
     </nav>
   );

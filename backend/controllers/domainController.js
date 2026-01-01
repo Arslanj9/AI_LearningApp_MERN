@@ -5,7 +5,11 @@ const DomainContent = require("../models/DomainContent");
 // GET /api/domains/:domain
 exports.getDomainContent = async (req, res) => {
   try {
-    const { domain } = req.params;
+    let { domain } = req.params;
+
+    // normalize domain
+    domain = domain.toUpperCase();
+
     const data = await DomainContent.findOne({ domain });
 
     if (!data) return res.status(404).json({ message: "Domain not found" });
