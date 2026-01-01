@@ -11,8 +11,6 @@ const ProtectedRoute = ({ allowedRoles }) => {
   try {
     const decoded = jwtDecode(token);
 
-    console.log("decoded is: ", decoded)
-
     if (!allowedRoles.includes(decoded.role)) {
       return <Navigate to="/" replace />;
     }

@@ -1,11 +1,28 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 function Navbar() {
   const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem("token");
+  const token = localStorage.getItem("token");
+  const isLoggedIn = !!token;
   const [showLearn, setShowLearn] = useState(false);
   const [showDomains, setShowDomains] = useState(false);
+
+  // Decode token to get user role
+  let userRole = null;
+  if (token) {
+    try {
+      const decoded = jwtDecode(token);
+      userRole = decoded.role;
+    } catch (error) {
+      // If token is invalid, userRole remains null
+      console.error("Error decoding token:", error);
+    }
+  }
+
+  const isAdmin = userRole === "admin";
+
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -138,12 +155,14 @@ function Navbar() {
 
         {/* CTA BUTTONS */}
         <div className="hidden md:flex items-center space-x-4">
-          <Link
-            to="/dashboard"
-            className="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition"
-          >
-            Dashboard
-          </Link>
+          {isAdmin && (
+            <Link
+              to="/dashboard"
+              className="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition"
+            >
+              Dashboard
+            </Link>
+          )}
           {!isLoggedIn ? (
             <Link
               to="/register"

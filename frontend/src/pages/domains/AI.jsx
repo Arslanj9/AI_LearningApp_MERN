@@ -6,7 +6,7 @@ const AI = () => {
 
   useEffect(() => {
     api
-      .get("/api/domain/AI") 
+      .get("/api/domains/AI") 
       .then((res) => setData(res.data))
       .catch((err) => console.error(err));
   }, []);
