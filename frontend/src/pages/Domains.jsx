@@ -14,9 +14,8 @@ const Domains = () => {
     const fetchDomain = async () => {
       try {
         setLoading(true);
-        const res = await api.get(`http://localhost:5000/api/domains/${domain}`);
-
-        console.log("Domain is: ", domain)
+        const res = await api.get(`/api/domains/${domain}`);
+    
         setData(res.data);
 
       } catch (err) {

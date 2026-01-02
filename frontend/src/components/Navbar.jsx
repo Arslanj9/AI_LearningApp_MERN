@@ -29,134 +29,150 @@ function Navbar() {
   };
 
   return (
-    <nav className="w-full bg-white shadow-sm fixed top-0 left-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <nav
+      className="w-full fixed top-0 left-0 z-50
+      bg-white/80 backdrop-blur-md
+      border-b border-gray-100
+      shadow-[0_8px_30px_rgba(0,0,0,0.04)]"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-3 flex items-center justify-between">
         {/* LOGO */}
-        <Link to="/" className="text-2xl font-bold text-indigo-600">
+        <Link
+          to="/"
+          className="text-2xl font-extrabold tracking-tight
+          bg-gradient-to-r from-indigo-600 to-purple-600
+          bg-clip-text text-transparent"
+        >
           AI Learning Guide
         </Link>
+
         {/* NAV LINKS */}
-        <div className="hidden md:flex items-center space-x-8 text-gray-700 font-medium">
-          <Link to="/" className="hover:text-indigo-600 transition">
+        <div className="hidden md:flex items-center space-x-10 text-[15px] text-gray-600 font-semibold">
+          <Link
+            to="/"
+            className="relative hover:text-indigo-600 transition-colors"
+          >
             Home
           </Link>
+
           {/* LEARN DROPDOWN */}
           <div
-            className="relative p-1 cursor-pointer"
+            className="relative"
             onMouseEnter={() => setShowLearn(true)}
             onMouseLeave={() => setShowLearn(false)}
           >
-            <button className="hover:text-indigo-600 p-1 transition flex cursor-pointer items-center gap-1">
-              Learn
-              <span className="text-sm">▾</span>
+            <button className="flex items-center p-2 gap-1 hover:text-indigo-600 transition">
+              Learn <span className="text-sm">▾</span>
             </button>
 
-            {/* Main Learn Dropdown */}
+            {/* MAIN DROPDOWN */}
             <div
               className={`
-      absolute top-7 left-0 w-56 bg-white border rounded-lg shadow-lg py-2
-      transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]
-      ${
-        showLearn
-          ? "opacity-100 translate-y-2 scale-100 pointer-events-auto"
-          : "opacity-0 translate-y-2 scale-95 pointer-events-none"
-      }
-    `}
+                absolute top-7 left-0 w-60
+                bg-white/95 backdrop-blur-lg
+                border border-gray-100 rounded-xl
+                shadow-[0_20px_40px_rgba(0,0,0,0.08)]
+                py-2
+                transition-all duration-200 ease-out
+                ${
+                  showLearn
+                    ? "opacity-100 translate-y-2 scale-100"
+                    : "opacity-0 translate-y-0 scale-95 pointer-events-none"
+                }
+              `}
             >
-              {/* Domains with Submenu */}
+              {/* DOMAINS */}
               <div
-                className="relative group"
+                className="relative"
                 onMouseEnter={() => setShowDomains(true)}
                 onMouseLeave={() => setShowDomains(false)}
               >
-                <button className="w-full text-left px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600 flex justify-between items-center">
+                <button
+                  className="w-full px-5 py-2.5 flex justify-between items-center
+                  text-sm font-medium text-gray-600
+                  hover:bg-indigo-50 hover:text-indigo-600
+                  rounded-lg transition"
+                >
                   Domains <span className="text-sm">▸</span>
                 </button>
 
-                {/* Submenu for Domains */}
+                {/* DOMAINS SUBMENU */}
                 <div
                   className={`
-          absolute top-[-10px] left-full w-56 bg-white border rounded-lg shadow-lg py-2
-          transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]
-          ${
-            showDomains
-              ? "opacity-100 translate-x-0 scale-100 pointer-events-auto"
-              : "opacity-0 translate-x-2 scale-95 pointer-events-none"
-          }
-        `}
+                    absolute top-[-8px] left-full w-60
+                    bg-white/95 backdrop-blur-lg
+                    border border-gray-100 rounded-xl
+                    shadow-[0_20px_40px_rgba(0,0,0,0.08)]
+                    py-2
+                    transition-all duration-200 ease-out
+                    ${
+                      showDomains
+                        ? "opacity-100 translate-x-0 scale-100"
+                        : "opacity-0 translate-x-2 scale-95 pointer-events-none"
+                    }
+                  `}
                 >
-                  <Link
-                    className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
-                    to="/domains/ai"
-                  >
-                    Artificial Intelligence
-                  </Link>
-                  <Link
-                    className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
-                    to="/domains/ml"
-                  >
-                    Machine Learning
-                  </Link>
-                  <Link
-                    className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
-                    to="/domains/dl"
-                  >
-                    Deep Learning
-                  </Link>
-                  <Link
-                    className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
-                    to="/domains/cv"
-                  >
-                    Computer Vision
-                  </Link>
-                  <Link
-                    className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
-                    to="/domains/nlp"
-                  >
-                    NLP
-                  </Link>
-                  <Link
-                    className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
-                    to="/domains/rl"
-                  >
-                    Reinforcement Learning
-                  </Link>
-                  <Link
-                    className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
-                    to="/domains/mlops"
-                  >
-                    MLOps
-                  </Link>
+                  {[
+                    { name: "Artificial Intelligence", path: "/domains/ai" },
+                    { name: "Machine Learning", path: "/domains/ml" },
+                    { name: "Deep Learning", path: "/domains/dl" },
+                    { name: "Computer Vision", path: "/domains/cv" },
+                    { name: "NLP", path: "/domains/nlp" },
+                    { name: "Reinforcement Learning", path: "/domains/rl" },
+                    { name: "MLOps", path: "/domains/mlops" },
+                  ].map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className="block px-5 py-2.5 text-sm font-medium
+                      text-gray-600 hover:bg-indigo-50 hover:text-indigo-600
+                      rounded-lg transition"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
                 </div>
               </div>
 
-              {/* Other main links */}
+              {/* OTHER LINKS */}
               <Link
                 to="/glossary"
-                className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
+                className="block px-5 py-2.5 text-sm font-medium
+                text-gray-600 hover:bg-indigo-50 hover:text-indigo-600
+                rounded-lg transition"
               >
                 Glossary
               </Link>
               <Link
                 to="/resources"
-                className="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600"
+                className="block px-5 py-2.5 text-sm font-medium
+                text-gray-600 hover:bg-indigo-50 hover:text-indigo-600
+                rounded-lg transition"
               >
                 Resources
               </Link>
             </div>
           </div>
-          {/* ROADMAP STAYS IN MAIN NAV */}
-          <Link to="/roadmap" className="hover:text-indigo-600 transition">
+
+          {/* ROADMAP */}
+          <Link
+            to="/roadmap"
+            className="relative hover:text-indigo-600 transition-colors"
+          >
             Roadmap
           </Link>
         </div>
-        {/* CTA BUTTONS */}
+
         {/* CTA BUTTONS */}
         <div className="hidden md:flex items-center space-x-4">
           {isAdmin && (
             <Link
               to="/dashboard"
-              className="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition"
+              className="bg-gradient-to-r from-indigo-600 to-purple-600
+              text-white px-6 py-2.5 rounded-full
+              shadow-md hover:shadow-lg
+              hover:from-indigo-700 hover:to-purple-700
+              transition-all"
             >
               Dashboard
             </Link>
@@ -166,14 +182,20 @@ function Navbar() {
             <>
               <Link
                 to="/login"
-                className="bg-white text-indigo-600 border border-indigo-600 px-5 py-2 rounded-full hover:bg-indigo-50 transition"
+                className="px-6 py-2.5 rounded-full
+                border border-gray-300 text-gray-700
+                hover:border-indigo-600 hover:text-indigo-600
+                transition"
               >
                 Sign In
               </Link>
 
               <Link
                 to="/register"
-                className="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition"
+                className="bg-indigo-600 text-white
+                px-6 py-2.5 rounded-full
+                shadow-md hover:bg-indigo-700 hover:shadow-lg
+                transition-all"
               >
                 Sign Up
               </Link>
@@ -181,15 +203,18 @@ function Navbar() {
           ) : (
             <button
               onClick={handleLogout}
-              className="bg-red-500 text-white px-5 py-2 rounded-full hover:bg-red-600 transition"
+              className="bg-red-500 text-white
+              px-6 py-2.5 rounded-full
+              hover:bg-red-600 shadow-md
+              transition"
             >
               Logout
             </button>
           )}
         </div>
-        
       </div>
     </nav>
+
   );
 }
 
