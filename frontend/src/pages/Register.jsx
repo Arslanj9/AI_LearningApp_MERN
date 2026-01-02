@@ -24,7 +24,7 @@ export default function Register() {
   };
 
   return (
-    <section className="h-[85vh] bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center px-4">
+    <section style={{ height: "calc(100vh - 64px)" }} className="bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-white p-10 rounded-2xl shadow-lg border border-gray-200">
         <h2 className="text-3xl font-extrabold text-gray-800 mb-6 text-center">Create Account</h2>
 
