@@ -1,4 +1,5 @@
 // controllers/domainController.js
+const path = require("path");
 const DomainContent = require("../models/DomainContent");
 
 // Get data for a specific domain
@@ -12,7 +13,17 @@ exports.getDomainContent = async (req, res) => {
 
     const data = await DomainContent.findOne({ domain });
 
-    if (!data) return res.status(404).json({ message: "Domain not found" });
+    if (!data) return res.status(404).json({ message: "Domain not found" }); 
+
+    // Add PDF path if file exists in uploads folder
+    // Here, we assume PDF is named like domain.pdf (e.g., AI.pdf)
+    const fs = require("fs");
+    const pdfPath = path.join(__dirname, "../uploads", `${domain}.pdf`);
+    if (fs.existsSync(pdfPath)) {
+      // Include the relative URL for frontend
+      data.pdf = `/uploads/${domain}.pdf`;
+    }
+
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: "Server error" });

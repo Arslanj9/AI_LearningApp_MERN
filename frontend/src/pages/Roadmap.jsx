@@ -21,30 +21,49 @@ const Roadmap = () => {
   }, []);
 
   if (loading) return <p className="mt-24 text-center">Loading roadmap...</p>;
-  if (!roadmap) return <p className="mt-24 text-center text-red-500">Roadmap not found</p>;
+  if (!roadmap)
+    return <p className="mt-24 text-center text-red-500">Roadmap not found</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6 text-indigo-600">AI/ML Roadmap</h1>
+    <div className="min-h-screen bg-gray-50 py-10 px-4">
+      <div className="max-w-4xl mx-auto">
+        {/* Page Title */}
+        <h1 className="text-4xl font-extrabold text-center mb-10 tracking-tight bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          AI / ML Roadmap
+        </h1>
 
-      <div className="space-y-8">
-        {roadmap.map((section) => (
-          <div key={section.level}>
-            <h2 className="text-xl font-semibold mb-2">
-              {section.level}. {section.title}
-            </h2>
-            <ul className="list-disc ml-6 space-y-1">
-              {section.items.map((item, i) => (
-                <li
-                  key={i}
-                  className="text-gray-700 hover:text-indigo-600 transition"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {/* Roadmap Sections */}
+        <div className="space-y-8">
+          {roadmap.map((section) => (
+            <div
+              key={section.level}
+              className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 border border-gray-100"
+            >
+              {/* Section Header */}
+              <div className="flex items-center gap-3 mb-4">
+                <span className="flex items-center justify-center w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 font-bold">
+                  {section.level}
+                </span>
+                <h2 className="text-2xl font-semibold text-gray-800">
+                  {section.title}
+                </h2>
+              </div>
+
+              {/* Section Items */}
+              <ul className="space-y-2 ml-2">
+                {section.items.map((item, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 text-gray-700 hover:text-indigo-600 transition"
+                  >
+                    <span className="mt-1 w-2 h-2 bg-indigo-500 rounded-full"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

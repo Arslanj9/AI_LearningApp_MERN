@@ -8,6 +8,7 @@ const DomainContentSchema = new mongoose.Schema({
       content: { type: String }, // optional description/content
     }
   ],
+  pdf: { type: String }, // <-- new field to store PDF URL/path
   createdAt: { type: Date, default: Date.now },
 });
 
