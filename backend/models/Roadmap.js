@@ -1,31 +1,31 @@
 const mongoose = require("mongoose");
 
-const roadmapItemSchema = new mongoose.Schema({
-  level: {
-    type: Number,
-    required: true,
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-  items: [
-    {
-      type: String,
-      required: true,
-    },
-  ],
-});
-
-const RoadmapSchema = new mongoose.Schema(
+const roadmapsSchema = new mongoose.Schema(
   {
-    name: {
+    title: { type: String, required: true },
+
+    details: { type: String }, // optional
+
+    side: {
       type: String,
-      default: "AI & ML Roadmap",
+      enum: ["left", "right", "center"],
+      default: "center",
     },
-    roadmap: [roadmapItemSchema],
+
+    order: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
+
+    subTopics: [
+      {
+        title: { type: String, required: true },
+        details: { type: String },
+      },
+    ],
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Roadmap", RoadmapSchema);
+module.exports = mongoose.model("Roadmaps", roadmapsSchema);

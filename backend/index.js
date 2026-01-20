@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes); 
 app.use("/api/domains", domainContentRoutes);
-app.use("/api/roadmaps", roadmapRoutes);
+app.use("/api/roadmap", roadmapRoutes);
 
 app.get("/test", (req, res) => {
   res.send("Backend reachable!");

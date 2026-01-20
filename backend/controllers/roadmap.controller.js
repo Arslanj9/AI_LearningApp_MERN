@@ -1,81 +1,68 @@
 const Roadmap = require("../models/Roadmap");
 
-// ✅ Create or Update Roadmap
-exports.saveRoadmap = async (req, res) => {
+/**
+ * Create a roadmap topic
+ */
+exports.createTopic = async (req, res) => {
   try {
-    const { roadmap } = req.body;
-
-    if (!roadmap || !Array.isArray(roadmap)) {
-      return res.status(400).json({ message: "Invalid roadmap data" });
-    }
-
-    // Keep single roadmap document
-    let existing = await Roadmap.findOne();
-
-    if (existing) {
-      existing.roadmap = roadmap;
-      await existing.save();
-      return res.json({ message: "Roadmap updated successfully" });
-    }
-
-    const newRoadmap = new Roadmap({ roadmap });
-    await newRoadmap.save();
-
-    res.status(201).json({ message: "Roadmap saved successfully" });
+    const topic = await Roadmap.create(req.body);
+    res.status(201).json(topic);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
+    res.status(400).json({ message: error.message });
   }
 };
 
-
-// PATCH /api/roadmaps/:sectionId
-exports.updateRoadmapSection = async (req, res) => {
+/**
+ * Get all topics (for React Flow)
+ */
+exports.getAllTopics = async (req, res) => {
   try {
-    const { sectionId } = req.params;
-    const { level, title, items } = req.body;
+    const topics = await Roadmap.find().sort({ order: 1 });
+    res.json(topics);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-    if (!level && !title && !items) {
-      return res.status(400).json({
-        message: "At least one field must be provided",
-      });
-    }
+/**
+ * Get single topic
+ */
+exports.getTopicById = async (req, res) => {
+  try {
+    const topic = await Roadmap.findById(req.params.id);
+    if (!topic) return res.status(404).json({ message: "Topic not found" });
 
-    const updateFields = {};
-    if (level !== undefined) updateFields["roadmap.$.level"] = level;
-    if (title) updateFields["roadmap.$.title"] = title;
-    if (items) updateFields["roadmap.$.items"] = items;
+    res.json(topic);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-    const updated = await Roadmap.findOneAndUpdate(
-      { "roadmap._id": sectionId },
-      { $set: updateFields },
+/**
+ * Update topic
+ */
+exports.updateTopic = async (req, res) => {
+  try {
+    const updated = await Roadmap.findByIdAndUpdate(
+      req.params.id,
+      req.body,
       { new: true }
     );
 
-    if (!updated) {
-      return res.status(404).json({
-        message: "Roadmap section not found",
-      });
-    }
-
-    res.json({
-      message: "Roadmap updated successfully",
-      data: updated,
-    });
+    res.json(updated);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
+    res.status(400).json({ message: error.message });
   }
 };
 
-
-
-// ✅ Fetch Roadmap (for frontend)
-exports.getRoadmap = async (req, res) => {
+/**
+ * Delete topic
+ */
+exports.deleteTopic = async (req, res) => {
   try {
-    const roadmap = await Roadmap.findOne();
-    res.json(roadmap);
+    await Roadmap.findByIdAndDelete(req.params.id);
+    res.json({ message: "Topic deleted" });
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: error.message });
   }
 };

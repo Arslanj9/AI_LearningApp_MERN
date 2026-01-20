@@ -1,17 +1,27 @@
 const express = require("express");
 const router = express.Router();
-const { saveRoadmap, getRoadmap } = require("../controllers/roadmap.controller");
-const { updateRoadmapSection } = require("../controllers/roadmap.controller");
 
-const { protect, adminOnly } = require("../middlewares/authMiddleware.js");
+const {
+  createTopic,
+  getAllTopics,
+  getTopicById,
+  updateTopic,
+  deleteTopic,
+} = require("../controllers/roadmap.controller");
 
-// Admin-only route
-router.post("/", saveRoadmap);
-router.patch("/:sectionId", updateRoadmapSection);
+// Create topic (Admin later)
+router.post("/", createTopic);
 
-// Public route
-router.get("/", getRoadmap);
+// Get full roadmap
+router.get("/", getAllTopics);
 
+// Get single topic
+router.get("/:id", getTopicById);
 
+// Update topic
+router.patch("/:id", updateTopic);
+
+// Delete topic
+router.delete("/:id", deleteTopic);
 
 module.exports = router;
