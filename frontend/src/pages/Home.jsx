@@ -9,6 +9,7 @@ import { GiWorld } from "react-icons/gi";
 const Home = () => {
   return (
     <div className="w-full">
+      
       {/* HERO SECTION */}
       <section
         className="relative overflow-hidden
