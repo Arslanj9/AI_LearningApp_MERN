@@ -131,9 +131,7 @@ export default function RoadmapFlow() {
   );
 
   const onNodeClick = (_, node) => {
-    if (node.type === "sub") {
-      alert(`${node.data.label}\n\n${node.data.details}`);
-    }
+    // Popup logic is now handled in SubNode component
   };
 
   return (
