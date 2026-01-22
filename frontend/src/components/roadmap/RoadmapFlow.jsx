@@ -73,7 +73,7 @@ export default function RoadmapFlow() {
 
         const isLeft = topic.side === "left";
         const subX = isLeft ? -sideGap : sideGap;
-        const subY = y + subIndex * 70 - 40;
+        const subY = y + subIndex * 40 - 30;
 
         newNodes.push({
           id: sub._id,
@@ -152,14 +152,14 @@ export default function RoadmapFlow() {
 
         panOnDrag={false}        // Disable drag to pan
         panOnScroll={true}       // Enable scroll wheel to pan
-        zoomOnScroll={false}     // Disable zoom on scroll
-        zoomOnPinch={false}
+        zoomOnScroll={true}     // Disable zoom on scroll
+        zoomOnPinch={true}
         zoomOnDoubleClick={false}
 
         /* Limit panning area */
         translateExtent={[
-          [-300, -300],
-          [500, 2000]
+          [-200, -200],
+          [500, 1800]
         ]}
       />
     </div>

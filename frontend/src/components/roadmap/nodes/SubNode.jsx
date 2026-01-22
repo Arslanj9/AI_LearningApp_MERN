@@ -5,6 +5,7 @@ import { Popup } from "./Popup";
 export function SubNode({ data }) {
   const isLeft = data.side === "left";
   const [showPopup, setShowPopup] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   // Check if details exist
   const hasDetails = data.details !== undefined && data.details !== null && data.details !== "";
@@ -13,15 +14,20 @@ export function SubNode({ data }) {
     <>
       <div
         onClick={() => hasDetails && setShowPopup(true)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="text-xs"
         style={{
-          fontSize: "11px",
           padding: "8px 14px",
-          background: hasDetails ? "#E8F5E9" : "#f0f0f0",
-          border: hasDetails ? "1px solid #A5D6A7" : "1px solid #ccc",
+          background: hasDetails ? "#FFF3E0" : "#f0f0f0",
+          border: hasDetails ? "1px solid #FFB74D" : "1px solid #ccc",
           borderRadius: "8px",
           minWidth: 160,
           textAlign: "center",
           cursor: hasDetails ? "pointer" : "default",
+          transform: isHovered && hasDetails ? "scale(1.1)" : "scale(1)",
+          boxShadow: isHovered && hasDetails ? "0 8px 16px rgba(0, 0, 0, 0.2)" : "0 2px 4px rgba(0, 0, 0, 0.1)",
+          transition: "all 0.2s ease",
         }}
       >
         <Handle

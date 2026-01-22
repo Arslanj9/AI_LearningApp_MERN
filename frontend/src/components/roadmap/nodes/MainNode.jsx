@@ -5,27 +5,32 @@ import { Popup } from "./Popup";
 export function MainNode({ data }) {
   const { side = "center", index, total, details, handles } = data;
   const [showPopup, setShowPopup] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   // Check if details exist
   const hasDetails = details !== undefined && details !== null && details !== "";
 
-  console.log("Main Node:", data);
 
   return (
     <>
       <div
         onClick={() => hasDetails && setShowPopup(true)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="text-xl"
         style={{
           maxWidth: 200,
           padding: "14px 20px",
-          background: hasDetails ? "#E3F2FD" : "#f6fafd91",
+          background: hasDetails ? "#bfddff" : "#f6fafd91",
           border: hasDetails ? "2px solid #90CAF9" : "none",
           borderRadius: "10px",
-          fontWeight: 600,
+          fontWeight: 200,
           minWidth: 220,
           textAlign: "center",
           cursor: hasDetails ? "pointer" : "default",
           transition: "all 0.3s ease",
+          transform: isHovered && hasDetails ? "scale(1.08)" : "scale(1)",
+          boxShadow: isHovered && hasDetails ? "0 8px 16px rgba(0, 0, 0, 0.2)" : "0 2px 4px rgba(0, 0, 0, 0.1)",
         }}
       >
         {data.label}

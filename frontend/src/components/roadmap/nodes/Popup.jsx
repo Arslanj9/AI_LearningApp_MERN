@@ -22,11 +22,11 @@ export function Popup({ isOpen, onClose, title, content }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-lg shadow-2xl p-6 w-1/3 transform transition-all"
+        className="bg-white rounded-lg shadow-2xl p-6 w-2/4 transform transition-all"
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
+          <h2 className="text-xl font-bold text-gray-900">{title}</h2>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 transition-all p-1 hover:bg-gray-100 rounded-full"
@@ -49,11 +49,11 @@ export function Popup({ isOpen, onClose, title, content }) {
         </div>
 
         {/* Content */}
-        <p className="text-gray-600 text-base leading-relaxed mb-6">
+        <p className="text-gray-600 text-xs leading-relaxed mb-8">
           {content || "No content provided"}
         </p>
 
-        <p className="bg-black text-white inline-block rounded-3xl p-4 py-0 cursor-pointer text-base mb-6">
+        <p className="bg-black text-white inline-block rounded-3xl p-4 py-0 cursor-pointer text-base mb-4">
           Resources
         </p>
 
