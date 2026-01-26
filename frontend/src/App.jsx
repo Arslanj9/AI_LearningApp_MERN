@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Roadmap from "./pages/Roadmap";
 import Chatbot from './components/chatBot';
+import ChatWidget from './components/ChatWidget';
 
 
 // Domains
@@ -15,7 +16,7 @@ import ML from "./pages/domains/ML";
 import DL from "./pages/domains/DL";
 import CV from "./pages/domains/CV";
 import NLP from "./pages/domains/NLP";
-import RL from "./pages/domains/RL";
+import RL from "./pages/domains/RL";  
 import MLOps from "./pages/domains/MLOps";
 
 // Admin Dashboard
@@ -29,6 +30,7 @@ function App() {
   return (
     <div>
       <Navbar />
+      <ChatWidget />
       <div className="mt-16 mx-auto">
         <Routes>
           <Route path="/" element={<Home />} />
