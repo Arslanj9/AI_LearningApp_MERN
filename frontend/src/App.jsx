@@ -5,6 +5,7 @@ import Python from "./pages/Python";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Roadmap from "./pages/Roadmap";
+import Chatbot from './components/chatBot';
 
 
 // Domains
@@ -35,6 +36,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/roadmap/python" element={<Python />} />
+          <Route path="/chatbot" element={<Chatbot />} />
 
           {/* Domain Pages */}
           <Route path="/domains/:domain" element={<Domains />} />

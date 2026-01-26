@@ -13,6 +13,7 @@ const authRoutes = require("./routes/auth.route.js");
 const adminRoutes = require("./routes/admin.route.js"); 
 const domainContentRoutes = require("./routes/domain.route.js");
 const roadmapRoutes = require("./routes/roadmap.routes.js")
+const chatbotRoutes = require("./routes/chatbotRoutes");
 
 // Connect to MongoDB
 connectDB();
@@ -29,6 +30,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes); 
 app.use("/api/domains", domainContentRoutes);
 app.use("/api/roadmap", roadmapRoutes);
+app.use("/api/chatbot", chatbotRoutes);
 
 app.get("/test", (req, res) => {
   res.send("Backend reachable!");
