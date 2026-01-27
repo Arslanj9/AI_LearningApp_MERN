@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Roadmap from "./pages/Roadmap";
 import Chatbot from './components/chatBot';
 import ChatWidget from './components/ChatWidget';
-
+import AutoPortfolioBuilder from "./pages/AutoPortfolioBuilder";
 
 // Domains
 import Domains from "./pages/Domains";
@@ -32,6 +32,8 @@ function App() {
           <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/roadmap/python" element={<Python />} />
           <Route path="/chatbot" element={<Chatbot />} />
+          <Route path="/portfolio-builder" element={<AutoPortfolioBuilder />} />
+
 
           {/* Domain Pages */}
           <Route path="/domains/:domain" element={<Domains />} />
