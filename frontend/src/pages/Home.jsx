@@ -61,8 +61,8 @@ const Home = () => {
       </section>
 
       {/* FEATURES SECTION */}
-      <section className="relative py-28 px-6 bg-white overflow-hidden">
-        <div className="relative max-w-6xl mx-auto text-center">
+      <section className="py-28 px-6 bg-white overflow-hidden">
+        <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-16">
             What You’ll Get From This Platform
           </h2>
@@ -104,7 +104,7 @@ const Home = () => {
                 className="w-full group"
               >
                 <div
-                  className="relative overflow-hidden
+                  className="overflow-hidden
               bg-white rounded-3xl p-8
               shadow-[0_10px_30px_rgba(0,0,0,0.08)]
               transition-transform duration-300
@@ -112,14 +112,14 @@ const Home = () => {
                 >
                   {/* Hover Shine */}
                   <div
-                    className="absolute inset-0 rounded-3xl
+                    className="inset-0 rounded-3xl
                 bg-white/10 pointer-events-none
                 opacity-0 group-hover:opacity-20
                 transition-opacity duration-500"
                   />
 
                   {/* Card Content */}
-                  <div className="relative flex flex-col items-center text-center">
+                  <div className="flex flex-col items-center text-center">
                     {/* Icon */}
                     <div className="mb-4">{item.icon}</div>
 
@@ -137,7 +137,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* WHO IS THIS FOR */}
+      {/* WHO IS THIS PLATFORM FOR */}
       <section className="bg-gray-50 py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-gray-900">

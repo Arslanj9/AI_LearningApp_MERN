@@ -11,13 +11,6 @@ import ChatWidget from './components/ChatWidget';
 
 // Domains
 import Domains from "./pages/Domains";
-import AI from "./pages/domains/AI";
-import ML from "./pages/domains/ML";
-import DL from "./pages/domains/DL";
-import CV from "./pages/domains/CV";
-import NLP from "./pages/domains/NLP";
-import RL from "./pages/domains/RL";  
-import MLOps from "./pages/domains/MLOps";
 
 // Admin Dashboard
 import ProtectedRoute from './routes/ProtectedRoute'
@@ -42,14 +35,6 @@ function App() {
 
           {/* Domain Pages */}
           <Route path="/domains/:domain" element={<Domains />} />
-
-          {/* <Route path="/domains/ai" element={<AI />} />
-          <Route path="/domains/ml" element={<ML />} />
-          <Route path="/domains/dl" element={<DL />} />
-          <Route path="/domains/cv" element={<CV />} />
-          <Route path="/domains/nlp" element={<NLP />} />
-          <Route path="/domains/rl" element={<RL />} />
-          <Route path="/domains/mlops" element={<MLOps />} /> */}
 
           {/* 🔐 ADMIN ONLY */}
           <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>

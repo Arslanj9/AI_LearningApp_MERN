@@ -77,14 +77,14 @@ const ChatWidget = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 group"
+          className="fixed bottom-6 right-6 group z-50"
           aria-label="Open chat"
         >
           {/* Glow effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
           
           {/* Button */}
-          <div className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-fuchsia-600 text-white rounded-full p-4 shadow-2xl transform group-hover:scale-110 transition-all duration-300 z-10">
+          <div className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-fuchsia-600 text-white rounded-full p-4 shadow-2xl transform group-hover:scale-110 transition-all duration-300">
             <svg
               className="w-7 h-7"
               fill="none"
