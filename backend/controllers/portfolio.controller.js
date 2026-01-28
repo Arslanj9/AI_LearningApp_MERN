@@ -1,4 +1,4 @@
-const Portfolio = require('../models/portfolio.model.js');
+const Portfolio = require('../models/Portfolio.js');
 
 const {
   generatePortfolioHTML,
