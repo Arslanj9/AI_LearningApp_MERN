@@ -161,6 +161,14 @@ function Navbar() {
           >
             Roadmap
           </Link>
+
+          {/* PORTFOLIO BUILDER */}
+          <Link
+            to="/portfolio-builder"
+            className="relative hover:text-indigo-600 transition-colors"
+          >
+            Portfolio Builder
+          </Link>
         </div>
 
         {/* CTA BUTTONS */}

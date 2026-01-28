@@ -1,4 +1,6 @@
 import { useState } from "react";
+import ProjectsStep from "./PortfolioBuilder/ProjectsStep";
+import PreviewStep from "./PortfolioBuilder/PreviewStep";           
 
 const steps = ["Basic Info", "Skills", "Projects", "Experience", "Preview"];
 
@@ -19,7 +21,7 @@ export default function AutoPortfolioBuilder() {
     const back = () => step > 0 && setStep(step - 1);
 
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+        <div style={{ height: "calc(100vh - 64px)" }} className="bg-gray-100 flex items-center justify-center p-4">
             <div className="bg-white w-full max-w-3xl rounded-2xl shadow-xl p-6">
                 {/* Step Header */}
                 <div className="mb-6">
@@ -33,12 +35,13 @@ export default function AutoPortfolioBuilder() {
                     </div>
                 </div>
 
+
                 {/* Step Content */}
                 {step === 0 && (
                     <div className="space-y-6">
                         {/* Full Name */}
                         <div className="space-y-1">
-                            <label className="text-sm font-medium text-gray-700">
+                            <label className="text-xs font-semibold uppercase tracking-wide text-gray-600">
                                 Full Name
                             </label>
                             <input
@@ -57,7 +60,7 @@ export default function AutoPortfolioBuilder() {
 
                         {/* Professional Title */}
                         <div className="space-y-1">
-                            <label className="text-sm font-medium text-gray-700">
+                            <label className="text-xs font-semibold uppercase tracking-wide text-gray-600">
                                 Professional Title
                             </label>
                             <input
@@ -79,7 +82,7 @@ export default function AutoPortfolioBuilder() {
 
                         {/* Bio */}
                         <div className="space-y-1">
-                            <label className="text-sm font-medium text-gray-700">
+                            <label className="text-xs font-semibold uppercase tracking-wide text-gray-600">
                                 Short Bio
                             </label>
                             <textarea
@@ -103,97 +106,69 @@ export default function AutoPortfolioBuilder() {
 
 
                 {step === 1 && (
-                    <div>
-                        <textarea
-                            className="input"
-                            placeholder="Skills (comma separated: React, Node, MongoDB)"
-                            value={formData.skills}
-                            onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
-                        />
+                    <div className="space-y-6">
+                        <div className="space-y-1">
+                            <label className="text-xs font-semibold uppercase tracking-wide text-gray-600">
+                                Skills
+                            </label>
+
+                            <textarea
+                                rows={4}
+                                placeholder="React, Node.js, Express, MongoDB, Tailwind CSS"
+                                value={formData.skills}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, skills: e.target.value })
+                                }
+                                className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3
+                   text-sm placeholder-gray-400 shadow-sm resize-none
+                   focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20
+                   transition"
+                            />
+
+                            <p className="text-xs text-gray-500">
+                                Separate skills with commas. These will appear as tags on your portfolio.
+                            </p>
+                        </div>
                     </div>
                 )}
 
                 {step === 2 && (
-                    <div className="space-y-4">
-                        {formData.projects.map((project, index) => (
-                            <div key={index} className="border p-4 rounded-xl">
-                                <input
-                                    className="input"
-                                    placeholder="Project Name"
-                                    value={project.name}
-                                    onChange={(e) => {
-                                        const projects = [...formData.projects];
-                                        projects[index].name = e.target.value;
-                                        setFormData({ ...formData, projects });
-                                    }}
-                                />
-                                <textarea
-                                    className="input"
-                                    placeholder="Project Description"
-                                    value={project.description}
-                                    onChange={(e) => {
-                                        const projects = [...formData.projects];
-                                        projects[index].description = e.target.value;
-                                        setFormData({ ...formData, projects });
-                                    }}
-                                />
-                                <input
-                                    className="input"
-                                    placeholder="Tech Stack"
-                                    value={project.tech}
-                                    onChange={(e) => {
-                                        const projects = [...formData.projects];
-                                        projects[index].tech = e.target.value;
-                                        setFormData({ ...formData, projects });
-                                    }}
-                                />
-                                <input
-                                    className="input"
-                                    placeholder="GitHub Repo Link"
-                                    value={project.github}
-                                    onChange={(e) => {
-                                        const projects = [...formData.projects];
-                                        projects[index].github = e.target.value;
-                                        setFormData({ ...formData, projects });
-                                    }}
-                                />
-                            </div>
-                        ))}
-
-                        <button
-                            onClick={() => setFormData({
-                                ...formData,
-                                projects: [...formData.projects, { name: "", description: "", tech: "", github: "", live: "" }]
-                            })}
-                            className="text-indigo-600 font-semibold"
-                        >
-                            + Add another project
-                        </button>
-                    </div>
-                )}
-
-                {step === 3 && (
-                    <textarea
-                        className="input"
-                        placeholder="Experience / Education"
-                        value={formData.experience}
-                        onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                    <ProjectsStep
+                        formData={formData}
+                        setFormData={setFormData}
                     />
                 )}
 
-                {step === 4 && (
-                    <div className="space-y-3 text-sm">
-                        <p><strong>Name:</strong> {formData.fullName}</p>
-                        <p><strong>Title:</strong> {formData.title}</p>
-                        <p><strong>Skills:</strong> {formData.skills}</p>
-                        <p className="text-gray-500">This data will be used to generate:</p>
-                        <ul className="list-disc ml-6">
-                            <li>Portfolio Website</li>
-                            <li>GitHub README</li>
-                            <li>Project Explanations (AI-generated)</li>
-                        </ul>
+
+                {step === 3 && (
+                    <div className="space-y-6">
+                        <div className="space-y-1">
+                            <label className="text-xs font-semibold uppercase tracking-wide text-gray-600">
+                                Experience / Education
+                            </label>
+
+                            <textarea
+                                rows={6}
+                                placeholder="e.g. BS Software Engineering (2021–2025), MERN Stack Developer with 2+ years of experience building full-stack applications..."
+                                value={formData.experience}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, experience: e.target.value })
+                                }
+                                className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3
+                   text-sm placeholder-gray-400 shadow-sm resize-none
+                   focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20
+                   transition"
+                            />
+
+                            <p className="text-xs text-gray-500">
+                                Include education, job roles, freelancing, or internships. Bullet points work well.
+                            </p>
+                        </div>
                     </div>
                 )}
+
+                {step === 4 && <PreviewStep formData={formData} />}               
+                
 
                 {/* Navigation */}
                 <div className="mt-8 flex items-center justify-between border-t pt-6">
