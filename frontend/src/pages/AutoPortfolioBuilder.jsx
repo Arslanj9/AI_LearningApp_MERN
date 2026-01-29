@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ProjectsStep from "./PortfolioBuilder/ProjectsStep";
-import PreviewStep from "./PortfolioBuilder/PreviewStep";           
+import PreviewStep from "./PortfolioBuilder/PreviewStep";
 
 const steps = ["Basic Info", "Skills", "Projects", "Experience", "Preview"];
 
@@ -167,8 +167,8 @@ export default function AutoPortfolioBuilder() {
                     </div>
                 )}
 
-                {step === 4 && <PreviewStep formData={formData} />}               
-                
+                {step === 4 && <PreviewStep formData={formData} />}
+
 
                 {/* Navigation */}
                 <div className="mt-8 flex items-center justify-between border-t pt-6">
@@ -185,27 +185,20 @@ export default function AutoPortfolioBuilder() {
                         ← Back
                     </button>
 
-                    {/* Next / Generate Button */}
+                    
                     <button
                         onClick={next}
+                        disabled={step === steps.length - 1}
                         className={`inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold
-                text-white shadow-md transition cursor-pointer
-                focus:outline-none focus:ring-2 focus:ring-indigo-500/40 
-                ${step === steps.length - 1
-                                ? "bg-gradient-to-r from-indigo-600 to-purple-600 hover:opacity-90"
-                                : "bg-indigo-600 hover:bg-indigo-700"
+    text-white shadow-md transition focus:outline-none focus:ring-2 focus:ring-indigo-500/40
+    ${step === steps.length - 1
+                                ? "bg-gray-400 cursor-not-allowed opacity-60"
+                                : "bg-indigo-600 hover:bg-indigo-700 cursor-pointer"
                             }`}
                     >
-                        {step === steps.length - 1 ? (
-                            <>
-                                Generate Portfolio 🚀
-                            </>
-                        ) : (
-                            <>
-                                Next →
-                            </>
-                        )}
+                        Next →
                     </button>
+
                 </div>
 
             </div>

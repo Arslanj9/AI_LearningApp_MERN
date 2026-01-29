@@ -11,7 +11,7 @@ export default function PreviewStep({ formData }) {
         setError(null);
 
         try {
-            const response = await fetch('http://localhost:5000/api/generate-portfolio', {
+            const response = await fetch('http://localhost:5000/api/portfolio/generate-portfolio', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
