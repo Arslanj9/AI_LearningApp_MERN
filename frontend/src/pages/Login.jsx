@@ -16,7 +16,6 @@ export default function Login() {
     setError("");
     try {
       const data = await loginUser(formData);
-      console.log("Logged in user:", data);
       
       // Save token to localStorage
       localStorage.setItem("token", data.token);
