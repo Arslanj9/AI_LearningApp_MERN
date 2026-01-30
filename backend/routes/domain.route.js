@@ -1,7 +1,7 @@
 // routes/domain.route.js
 const express = require("express");
 const router = express.Router();
-const domainController = require("../controllers/domainController");
+const domainController = require("../controllers/domain.controller");
 
 
 router.get("/:domain", domainController.getDomainContent); // GET /api/domains/:domain

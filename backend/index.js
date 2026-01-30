@@ -13,7 +13,7 @@ const authRoutes = require("./routes/auth.route.js");
 const adminRoutes = require("./routes/admin.route.js"); 
 const domainContentRoutes = require("./routes/domain.route.js");
 const roadmapRoutes = require("./routes/roadmap.routes.js")
-const chatbotRoutes = require("./routes/chatbotRoutes");
+const chatbotRoutes = require("./routes/chatbot.routes.js");
 const portfolioRoutes = require('./routes/portfolio.route.js');
 
 
