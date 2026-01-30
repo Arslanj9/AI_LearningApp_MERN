@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "../../../api";
+
 
 const EditDomain = ({ domain }) => {
   const [topics, setTopics] = useState([]);
@@ -14,14 +15,11 @@ const EditDomain = ({ domain }) => {
 
     const fetchDomain = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/domains/${domain}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const res = await api.get(`/api/domains/${domain}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         setTopics(res.data.topics);
       } catch (error) {
@@ -49,15 +47,12 @@ const EditDomain = ({ domain }) => {
 
       setSavingId(topicId);
 
-      // console.log("Saving topicId is: ", setSavingId(topicId))
-
-      await axios.patch(
-        `http://localhost:5000/api/domains/${domain}/topic/${topicId}`,
+      await api.patch(
+        `/api/domains/${domain}/topic/${topicId}`,
         { title, content },
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
           },
         }
       );

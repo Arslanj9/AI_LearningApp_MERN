@@ -9,7 +9,7 @@ const generatePortfolioHTML = async (formData) => {
   const prompt =
     'You are a professional web developer. Generate a beautiful, modern, single-page portfolio website in pure HTML with inline CSS and JavaScript.\n\n' +
     'User Information:\n' +
-    '- Name: ' + formData.fullName + '\n' +
+    '- Name: ' + formData.fullName + '\n' + 
     '- Title: ' + formData.title + '\n' +
     '- Bio: ' + formData.bio + '\n' +
     '- Skills: ' + formData.skills + '\n' +
