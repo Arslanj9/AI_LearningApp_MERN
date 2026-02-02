@@ -11,7 +11,9 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-64 h-screen bg-gray-900 text-gray-100 flex flex-col p-6 shadow-lg">
+    <div
+      className="fixed top-16 left-0 w-64 h-[calc(100vh-64px)] bg-gray-900 text-gray-100 flex flex-col p-6 shadow-lg"
+    >
       <h2 className="text-2xl font-semibold mb-10 text-gray-50">Admin Dashboard</h2>
 
       <ul className="flex flex-col gap-3">
@@ -20,10 +22,9 @@ const Sidebar = () => {
             <Link
               to={link.path}
               className={`block px-4 py-2 rounded-lg transition-colors duration-200
-                ${
-                  location.pathname === link.path
-                    ? "bg-yellow-500 text-gray-900 font-medium"
-                    : "hover:bg-gray-700 hover:text-yellow-400"
+                ${location.pathname === link.path
+                  ? "bg-yellow-500 text-gray-900 font-medium"
+                  : "hover:bg-gray-700 hover:text-yellow-400"
                 }`}
             >
               {link.name}
