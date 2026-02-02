@@ -5,6 +5,7 @@ import {
   applyEdgeChanges,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
+import { api } from "../../api";
 
 import { MainNode } from "./nodes/MainNode";
 import { SubNode } from "./nodes/SubNode";
@@ -18,10 +19,18 @@ export default function RoadmapFlow() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
 
+  
   useEffect(() => {
-    fetch("http://localhost:5000/api/roadmap")
-      .then((res) => res.json())
-      .then((data) => generateFlow(data));
+    const fetchRoadmap = async () => {
+      try {
+        const response = await api.get("/api/roadmap");
+        generateFlow(response.data);
+      } catch (error) {
+        console.error("Error fetching roadmap:", error);
+      }
+    };
+
+    fetchRoadmap();
   }, []);
 
 
