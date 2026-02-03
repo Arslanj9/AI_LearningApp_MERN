@@ -12,7 +12,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className="md:fixed md:top-16 md:left-0 md:w-64 md:h-[calc(100vh-64px)] w-full md:mt-0 bg-gray-900 text-gray-100 flex md:flex-col flex-row items-center md:items-start p-2 md:p-6 shadow-lg"
+      className="md:fixed z-50 fixed md:left-0 md:w-64 md:h-[calc(100vh-64px)] w-full md:mt-0 bg-gray-900 text-gray-100 flex md:flex-col flex-row items-center md:items-start p-2 md:p-6 shadow-lg"
     >
       <h2 className="hidden md:block text-2xl font-semibold mb-10 text-gray-50">Admin Dashboard</h2>
       <div className="md:hidden text-lg font-semibold text-gray-50 px-3">Admin</div>
@@ -35,7 +35,7 @@ const Sidebar = () => {
       </ul>
 
       <div className="mt-auto md:mt-auto text-sm text-gray-400 hidden md:block">
-        &copy; {new Date().getFullYear()} Company Name
+        &copy; {new Date().getFullYear()} AI Learning Guide 
       </div>
     </div>
   );

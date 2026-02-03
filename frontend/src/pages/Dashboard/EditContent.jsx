@@ -29,11 +29,11 @@ const EditContent = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Edit Content</h1>
+      <h1 className="text-3xl  font-bold mb-6">Edit Content</h1>
 
       {/* Dropdown Menu */}
       <div className="relative inline-block group">
-        <button className="px-6 py-2 bg-indigo-600 text-white rounded-lg">
+        <button className="px-6 py-2 z-0 bg-indigo-600 text-white rounded-lg">
           Choose Content
         </button>
 
