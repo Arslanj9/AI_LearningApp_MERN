@@ -8,6 +8,9 @@ function Navbar() {
   const isLoggedIn = !!token;
   const [showLearn, setShowLearn] = useState(false);
   const [showDomains, setShowDomains] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [showLearnMobile, setShowLearnMobile] = useState(false);
+  const [showDomainsMobile, setShowDomainsMobile] = useState(false);
 
   // Decode token to get user role
   let userRole = null;
@@ -45,6 +48,24 @@ function Navbar() {
         >
           AI Learning Guide
         </Link>
+
+        {/* MOBILE TOGGLE BUTTON */}
+        <button
+          onClick={() => setMobileOpen((v) => !v)}
+          className="md:hidden p-2 ml-3 rounded-md text-gray-700 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
+        >
+          {mobileOpen ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
 
         {/* NAV LINKS */}
         <div className="hidden md:flex items-center space-x-10 text-[15px] text-gray-600 font-semibold">
@@ -176,7 +197,7 @@ function Navbar() {
           {isAdmin && (
             <Link
               to="/dashboard"
-              className="bg-gradient-to-r from-indigo-600 to-purple-600
+              className="flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600
               text-white px-6 py-2.5 rounded-full
               shadow-md hover:shadow-lg
               hover:from-indigo-700 hover:to-purple-700
@@ -219,6 +240,85 @@ function Navbar() {
               Logout
             </button>
           )}
+        </div>
+      </div>
+
+      
+      {/* MOBILE MENU (small screens) */}
+      <div className={`${mobileOpen ? "block" : "hidden"} md:hidden bg-white border-t border-gray-100 shadow-md`}>
+        <div className="px-6 py-4 space-y-2">
+          <Link to="/" onClick={() => setMobileOpen(false)} className="block text-gray-700 font-semibold">Home</Link>
+
+          <div>
+            <button
+              onClick={() => setShowLearnMobile((v) => !v)}
+              className="w-full flex items-center justify-between text-gray-700 py-2"
+            >
+              <span className="font-semibold">Learn</span>
+              <span className="ml-2">{showLearnMobile ? '▾' : '▸'}</span>
+            </button>
+
+            <div className={`${showLearnMobile ? 'block' : 'hidden'} pl-3 mt-2 space-y-1`}>
+              <button
+                onClick={() => setShowDomainsMobile((v) => !v)}
+                className="w-full flex items-center justify-between text-gray-600 py-2"
+              >
+                <span>Domains</span>
+                <span>{showDomainsMobile ? '▾' : '▸'}</span>
+              </button>
+
+              <div className={`${showDomainsMobile ? 'block' : 'hidden'} pl-3 space-y-1`}>
+                {[
+                  { name: "Artificial Intelligence", path: "/domains/ai" },
+                  { name: "Machine Learning", path: "/domains/ml" },
+                  { name: "Deep Learning", path: "/domains/dl" },
+                  { name: "Computer Vision", path: "/domains/cv" },
+                  { name: "NLP", path: "/domains/nlp" },
+                  { name: "Reinforcement Learning", path: "/domains/rl" },
+                  { name: "MLOps", path: "/domains/mlops" },
+                ].map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => { setMobileOpen(false); setShowLearnMobile(false); setShowDomainsMobile(false); }}
+                    className="block text-gray-600 py-1"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+
+              <Link to="/glossary" onClick={() => setMobileOpen(false)} className="block text-gray-600 py-1">Glossary</Link>
+              <Link to="/resources" onClick={() => setMobileOpen(false)} className="block text-gray-600 py-1">Resources</Link>
+            </div>
+          </div>
+
+          <Link to="/roadmap" onClick={() => setMobileOpen(false)} className="block text-gray-700 py-1">Roadmap</Link>
+          <Link to="/portfolio-builder" onClick={() => setMobileOpen(false)} className="block text-gray-700 py-1">Portfolio Builder</Link>
+
+          <div className="pt-2">
+            {isAdmin && (
+              <Link 
+                to="/dashboard" onClick={() => setMobileOpen(false)} 
+                className="w-full flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2.5 rounded-full shadow-md hover:shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all">
+                  Dashboard
+              </Link>
+            )}
+
+            {!isLoggedIn ? (
+              <div className="space-y-2 flex flex-col">
+                <Link to="/login" onClick={() => setMobileOpen(false)} className="w-full text-center px-6 py-2.5 rounded-full border border-gray-300 text-gray-700 hover:border-indigo-600 hover:text-indigo-600 transition">Sign In</Link>
+                <Link to="/register" onClick={() => setMobileOpen(false)} className="w-full text-center bg-indigo-600 text-white px-6 py-2.5 rounded-full shadow-md hover:bg-indigo-700 hover:shadow-lg transition-all">Sign Up</Link>
+              </div>
+            ) : (
+              <button
+                onClick={() => { handleLogout(); setMobileOpen(false); }}
+                className="w-full mt-2 bg-red-500 text-white px-6 py-2.5 rounded-full hover:bg-red-600 shadow-md transition"
+              >
+                Logout
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </nav>
