@@ -244,80 +244,88 @@ function Navbar() {
       </div>
 
       
-      {/* MOBILE MENU (small screens) */}
-      <div className={`${mobileOpen ? "block" : "hidden"} md:hidden bg-white border-t border-gray-100 shadow-md`}>
-        <div className="px-6 py-4 space-y-2">
-          <Link to="/" onClick={() => setMobileOpen(false)} className="block text-gray-700 font-semibold">Home</Link>
+      {/* MOBILE MENU (small screens) with smooth open/close animation */}
+      <div className="md:hidden">
+        <div
+          className="bg-white border-t border-gray-100 shadow-md overflow-hidden transition-all duration-300 ease-out"
+          aria-hidden={!mobileOpen}
+        >
+          <div
+            className={`px-6 space-y-2 transition-all duration-500 ease-out ${mobileOpen ? 'py-4 opacity-100 translate-y-0' : 'py-0 opacity-0 -translate-y-2'}`}
+            style={{ maxHeight: mobileOpen ? '900px' : '0px' }}
+          >
+            <Link to="/" onClick={() => setMobileOpen(false)} className="block text-gray-700 font-semibold">Home</Link>
 
-          <div>
-            <button
-              onClick={() => setShowLearnMobile((v) => !v)}
-              className="w-full flex items-center justify-between text-gray-700 py-2"
-            >
-              <span className="font-semibold">Learn</span>
-              <span className="ml-2">{showLearnMobile ? '▾' : '▸'}</span>
-            </button>
-
-            <div className={`${showLearnMobile ? 'block' : 'hidden'} pl-3 mt-2 space-y-1`}>
+            <div>
               <button
-                onClick={() => setShowDomainsMobile((v) => !v)}
-                className="w-full flex items-center justify-between text-gray-600 py-2"
+                onClick={() => setShowLearnMobile((v) => !v)}
+                className="w-full flex items-center justify-between text-gray-700 py-2"
               >
-                <span>Domains</span>
-                <span>{showDomainsMobile ? '▾' : '▸'}</span>
+                <span className="font-semibold">Learn</span>
+                <span className="ml-2">{showLearnMobile ? '▾' : '▸'}</span>
               </button>
 
-              <div className={`${showDomainsMobile ? 'block' : 'hidden'} pl-3 space-y-1`}>
-                {[
-                  { name: "Artificial Intelligence", path: "/domains/ai" },
-                  { name: "Machine Learning", path: "/domains/ml" },
-                  { name: "Deep Learning", path: "/domains/dl" },
-                  { name: "Computer Vision", path: "/domains/cv" },
-                  { name: "NLP", path: "/domains/nlp" },
-                  { name: "Reinforcement Learning", path: "/domains/rl" },
-                  { name: "MLOps", path: "/domains/mlops" },
-                ].map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => { setMobileOpen(false); setShowLearnMobile(false); setShowDomainsMobile(false); }}
-                    className="block text-gray-600 py-1"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
+              <div className={`${showLearnMobile ? 'block' : 'hidden'} pl-3 mt-2 space-y-1`}>
+                <button
+                  onClick={() => setShowDomainsMobile((v) => !v)}
+                  className="w-full flex items-center justify-between text-gray-600 py-2"
+                >
+                  <span>Domains</span>
+                  <span>{showDomainsMobile ? '▾' : '▸'}</span>
+                </button>
 
-              <Link to="/glossary" onClick={() => setMobileOpen(false)} className="block text-gray-600 py-1">Glossary</Link>
-              <Link to="/resources" onClick={() => setMobileOpen(false)} className="block text-gray-600 py-1">Resources</Link>
+                <div className={`${showDomainsMobile ? 'block' : 'hidden'} pl-3 space-y-1`}>
+                  {[
+                    { name: "Artificial Intelligence", path: "/domains/ai" },
+                    { name: "Machine Learning", path: "/domains/ml" },
+                    { name: "Deep Learning", path: "/domains/dl" },
+                    { name: "Computer Vision", path: "/domains/cv" },
+                    { name: "NLP", path: "/domains/nlp" },
+                    { name: "Reinforcement Learning", path: "/domains/rl" },
+                    { name: "MLOps", path: "/domains/mlops" },
+                  ].map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => { setMobileOpen(false); setShowLearnMobile(false); setShowDomainsMobile(false); }}
+                      className="block text-gray-600 py-1"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+
+                <Link to="/glossary" onClick={() => setMobileOpen(false)} className="block text-gray-600 py-1">Glossary</Link>
+                <Link to="/resources" onClick={() => setMobileOpen(false)} className="block text-gray-600 py-1">Resources</Link>
+              </div>
             </div>
-          </div>
 
-          <Link to="/roadmap" onClick={() => setMobileOpen(false)} className="block text-gray-700 py-1">Roadmap</Link>
-          <Link to="/portfolio-builder" onClick={() => setMobileOpen(false)} className="block text-gray-700 py-1">Portfolio Builder</Link>
+            <Link to="/roadmap" onClick={() => setMobileOpen(false)} className="block text-gray-700 py-1">Roadmap</Link>
+            <Link to="/portfolio-builder" onClick={() => setMobileOpen(false)} className="block text-gray-700 py-1">Portfolio Builder</Link>
 
-          <div className="pt-2">
-            {isAdmin && (
-              <Link 
-                to="/dashboard" onClick={() => setMobileOpen(false)} 
-                className="w-full flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2.5 rounded-full shadow-md hover:shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all">
-                  Dashboard
-              </Link>
-            )}
+            <div className="pt-2">
+              {isAdmin && (
+                <Link 
+                  to="/dashboard" onClick={() => setMobileOpen(false)} 
+                  className="w-full flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2.5 rounded-full shadow-md hover:shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all">
+                    Dashboard
+                </Link>
+              )}
 
-            {!isLoggedIn ? (
-              <div className="space-y-2 flex flex-col">
-                <Link to="/login" onClick={() => setMobileOpen(false)} className="w-full text-center px-6 py-2.5 rounded-full border border-gray-300 text-gray-700 hover:border-indigo-600 hover:text-indigo-600 transition">Sign In</Link>
-                <Link to="/register" onClick={() => setMobileOpen(false)} className="w-full text-center bg-indigo-600 text-white px-6 py-2.5 rounded-full shadow-md hover:bg-indigo-700 hover:shadow-lg transition-all">Sign Up</Link>
-              </div>
-            ) : (
-              <button
-                onClick={() => { handleLogout(); setMobileOpen(false); }}
-                className="w-full mt-2 bg-red-500 text-white px-6 py-2.5 rounded-full hover:bg-red-600 shadow-md transition"
-              >
-                Logout
-              </button>
-            )}
+              {!isLoggedIn ? (
+                <div className="space-y-2 flex flex-col">
+                  <Link to="/login" onClick={() => setMobileOpen(false)} className="w-full text-center px-6 py-2.5 rounded-full border border-gray-300 text-gray-700 hover:border-indigo-600 hover:text-indigo-600 transition">Sign In</Link>
+                  <Link to="/register" onClick={() => setMobileOpen(false)} className="w-full text-center bg-indigo-600 text-white px-6 py-2.5 rounded-full shadow-md hover:bg-indigo-700 hover:shadow-lg transition-all">Sign Up</Link>
+                </div>
+              ) : (
+                <button
+                  onClick={() => { handleLogout(); setMobileOpen(false); }}
+                  className="w-full mt-2 bg-red-500 text-white px-6 py-2.5 rounded-full hover:bg-red-600 shadow-md transition"
+                >
+                  Logout
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
