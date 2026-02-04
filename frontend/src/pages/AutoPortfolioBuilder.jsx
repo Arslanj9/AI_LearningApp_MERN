@@ -46,7 +46,7 @@ export default function AutoPortfolioBuilder() {
                             </label>
                             <input
                                 type="text"
-                                placeholder="e.g. Arslan Javaid"
+                                placeholder="e.g. Sarah Chen"
                                 value={formData.fullName}
                                 onChange={(e) =>
                                     setFormData({ ...formData, fullName: e.target.value })
@@ -65,7 +65,7 @@ export default function AutoPortfolioBuilder() {
                             </label>
                             <input
                                 type="text"
-                                placeholder="MERN Stack Developer | Frontend Engineer"
+                                placeholder="Cloud DevOps Engineer | AWS Solutions Architect"
                                 value={formData.title}
                                 onChange={(e) =>
                                     setFormData({ ...formData, title: e.target.value })
@@ -87,7 +87,7 @@ export default function AutoPortfolioBuilder() {
                             </label>
                             <textarea
                                 rows={4}
-                                placeholder="A passionate developer who loves building scalable web apps..."
+                                placeholder="Cloud infrastructure enthusiast with expertise in automating deployments and optimizing DevOps pipelines. Passionate about containerization, orchestration, and infrastructure-as-code."
                                 value={formData.bio}
                                 onChange={(e) =>
                                     setFormData({ ...formData, bio: e.target.value })
@@ -114,7 +114,7 @@ export default function AutoPortfolioBuilder() {
 
                             <textarea
                                 rows={4}
-                                placeholder="React, Node.js, Express, MongoDB, Tailwind CSS"
+                                placeholder="AWS, Kubernetes, Docker, Terraform, Jenkins, GitLab CI/CD, Linux, Python, Ansible"
                                 value={formData.skills}
                                 onChange={(e) =>
                                     setFormData({ ...formData, skills: e.target.value })
@@ -149,7 +149,7 @@ export default function AutoPortfolioBuilder() {
 
                             <textarea
                                 rows={6}
-                                placeholder="e.g. BS Software Engineering (2021–2025), MERN Stack Developer with 2+ years of experience building full-stack applications..."
+                                placeholder="e.g. BS Computer Science (2019–2023), Cloud DevOps Engineer with 4+ years of experience managing AWS infrastructure, containerizing applications with Docker/Kubernetes, and implementing CI/CD pipelines. Led migration of legacy systems to cloud platforms, reducing operational costs by 40%."
                                 value={formData.experience}
                                 onChange={(e) =>
                                     setFormData({ ...formData, experience: e.target.value })
